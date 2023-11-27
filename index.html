@@ -9,19 +9,5 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
-    <script>
-      (function (win, doc) {
-        if (!win.addEventListener) return;
-        var html = document.documentElement;
-        function setFont() {
-          var html = document.documentElement;
-          html.style.fontSize = html.clientWidth / 10 + 'px';
-        }
-        setFont();
-        doc.addEventListener('DOMContentLoaded', setFont, false);
-        win.addEventListener('resize', setFont, false);
-        win.addEventListener('load', setFont, false);
-      })(window, document);
-    </script>
   </body>
 </html>

@@ -33,16 +33,6 @@ export default defineConfig({
       dts: path.resolve(__dirname, './src/components.d.ts'),
     }),
   ],
-  css: {
-    postcss: {
-      plugins: [
-        postCssPxToRem({
-          rootValue: 192,
-          propList: ['*'],
-        }),
-      ],
-    },
-  },
   base: './',
   /**
    * 与“根”相关的目录，构建输出将放在其中。如果目录存在，它将在构建之前被删除。
@@ -51,7 +41,7 @@ export default defineConfig({
   // outDir: 'dist',
   server: {
     // hostname: '0.0.0.0',
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 3333,
     // // 是否自动在浏览器打开
     // open: true,
