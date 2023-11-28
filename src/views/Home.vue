@@ -73,7 +73,16 @@ onMounted(() => {
 
   canvas.add(rect);
 
-  const flows = ['其他', '要素保障', '物流', '贸易交易', '进出口', '生产', '设计', '研发'];
+  const flows = [
+    '其他阿阇梨咖啡机啦阿阇梨的看法姜辣素的阿萨德法律框架阿阇梨考点附近',
+    '要素保障',
+    '物流',
+    '贸易交易',
+    '进出口',
+    '生产',
+    '设计',
+    '研发',
+  ];
 
   let left = 60 + 124;
 
@@ -95,7 +104,25 @@ onMounted(() => {
       angle: 45,
     });
 
-    let text1 = new fabric.Text(flowText, {
+    const maxWidth = 158;
+
+    const ctx = canvas.getContext();
+    ctx.font = '16px';
+
+    console.log(ctx.measureText('什...'), '==============')
+
+    let tmpText = flowText;
+    let width = ctx.measureText(tmpText).width;
+    let el = '';
+
+    while (width > maxWidth) {
+      el = '...';
+      tmpText = tmpText.slice(0, tmpText.length - 3);
+      width = ctx.measureText(`${tmpText}...`).width;
+    }
+    tmpText = `${tmpText}${el}`;
+
+    let text1 = new fabric.Text(tmpText, {
       top: 245 + 10 + 3 + 25 + 8,
       left: left + 7 + 16,
       fontSize: 14,
