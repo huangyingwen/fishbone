@@ -42,7 +42,7 @@ export default defineConfig({
   server: {
     // hostname: '0.0.0.0',
     host: '0.0.0.0',
-    port: 3333,
+    port: 8010,
     // // 是否自动在浏览器打开
     // open: true,
     // // 是否开启 https

@@ -12,7 +12,7 @@ type FlowType = {
 export default class Fishbone {
   private canvas: fabric.Canvas;
   private basePosition: { left: number; top: number };
-  private mainSize = { width: 1024, height: 10 };
+  private mainSize = { width: 0, height: 10 };
 
   private interactionOptions = {
     hoverCursor: 'pointer',
@@ -38,6 +38,7 @@ export default class Fishbone {
   }
 
   private init() {
+    this.mainSize.width = 144 + this.flowItems.length * 110;
     this.canvas = new fabric.Canvas(this.element, { defaultCursor: 'grab', ...this.options });
     this.basePosition = {
       left: (this.options.width - this.mainSize.width - 156) / 2 + 36,
@@ -57,22 +58,23 @@ export default class Fishbone {
       opt.e.preventDefault();
       opt.e.stopPropagation();
 
-      const vpt = this.canvas.viewportTransform;
-      if (zoom < 400 / 1000) {
-        vpt[4] = 200 - (1000 * zoom) / 2;
-        vpt[5] = 200 - (1000 * zoom) / 2;
-      } else {
-        if (vpt[4] >= 0) {
-          vpt[4] = 0;
-        } else if (vpt[4] < this.canvas.getWidth() - 1000 * zoom) {
-          vpt[4] = this.canvas.getWidth() - 1000 * zoom;
-        }
-        if (vpt[5] >= 0) {
-          vpt[5] = 0;
-        } else if (vpt[5] < this.canvas.getHeight() - 1000 * zoom) {
-          vpt[5] = this.canvas.getHeight() - 1000 * zoom;
-        }
-      }
+      // 设置画布边界
+      // const vpt = this.canvas.viewportTransform;
+      // if (zoom < 400 / 1000) {
+      //   vpt[4] = 200 - (1000 * zoom) / 2;
+      //   vpt[5] = 200 - (1000 * zoom) / 2;
+      // } else {
+      //   if (vpt[4] >= 0) {
+      //     vpt[4] = 0;
+      //   } else if (vpt[4] < this.canvas.getWidth() - 1000 * zoom) {
+      //     vpt[4] = this.canvas.getWidth() - 1000 * zoom;
+      //   }
+      //   if (vpt[5] >= 0) {
+      //     vpt[5] = 0;
+      //   } else if (vpt[5] < this.canvas.getHeight() - 1000 * zoom) {
+      //     vpt[5] = this.canvas.getHeight() - 1000 * zoom;
+      //   }
+      // }
     });
 
     this.canvas.on('mouse:down', function (opt) {
